@@ -1,0 +1,58 @@
+/*Lähteinä käytetty kurssimateriaalien lisäksi:
+https://www.w3.org/Style/Examples/007/evenodd.en.html*/
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+td {
+  padding: 6px;
+  border: 1px solid gray;
+}
+/*
+tr:nth-child(even) {
+  background: blue;
+}
+tr:nth-child(odd) {
+  background: pink;
+}*/
+tr:nth-child(even) {
+  background: #f2f2f2;
+}
+tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+th {
+  background-color: #b7d0ff;
+  font-weight: bold;
+  padding-top: 12px;
+  padding-bottom: 0px;
+  padding-left: 12px;
+  padding-right: 6px;
+}
+
+table {
+  font-size: 16px;
+  text-align: left;
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.center {
+  width: 60%;
+  margin: auto;
+  padding: 60px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.over {
+  background-color: #abffbd;
+}
+
+.bad {
+  background-color: #ff9e9e;
+}
