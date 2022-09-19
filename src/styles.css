@@ -1,7 +1,7 @@
 /*Lähteinä käytetty kurssimateriaalien lisäksi:
 https://www.w3.org/Style/Examples/007/evenodd.en.html*/
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 td {
@@ -22,13 +22,16 @@ tr:nth-child(odd) {
   background: #ffffff;
 }
 
-th {
+thead,
+th,
+tr {
   background-color: #b7d0ff;
   font-weight: bold;
   padding-top: 12px;
   padding-bottom: 0px;
   padding-left: 12px;
   padding-right: 6px;
+  border-bottom: 2px solid gray;
 }
 
 table {
