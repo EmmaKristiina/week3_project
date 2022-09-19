@@ -1,3 +1,5 @@
+/* Lähteinä käytetty
+https://www.w3schools.com/jsref/prop_html_classname.asp*/
 import "./styles.css";
 
 document.getElementById("app").innerHTML = `
