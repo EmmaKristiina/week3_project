@@ -22,7 +22,7 @@ if (document.readyState !== "loading") {
 }
 
 function initialize() {
-  const tab = document.getElementById("tab");
+  const tab = document.getElementById("tabBody");
 
   async function getdata() {
     const url =
@@ -66,7 +66,7 @@ function initialize() {
       if (per > 0.45) {
         tr.appendChild(td4).className = "over";
       }
-      if (per <= 0.25) {
+      if (per < 0.25) {
         tr.appendChild(td4).className = "bad";
       }
       tr.appendChild(td4);
