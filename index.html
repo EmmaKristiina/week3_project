@@ -1,29 +1,52 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Parcel Sandbox</title>
-    <meta charset="UTF-8" />
-  </head>
+/*Lähteinä käytetty kurssimateriaalien lisäksi:
+https://www.w3.org/Style/Examples/007/evenodd.en.html*/
+body {
+  font-family: Verdana, Arial, sans-serif;
+}
 
-  <body>
-    <div id="app"></div>
+td {
+  padding: 6px;
+  border: 1px solid gray;
+}
 
-    <script src="src/index.js" defer></script>
-<div class="center">
-	<h1>Municipality employment statistics in Finland</h1>
-    <table id="tab">
-      <thead id="tabHead">
-        <tr>
-          <th>Municipality</th>
-					<th>Population</th>
-					<th>Employment amount</th>
-					<th>Employment-%</th>
-        </tr>
-      </thead>
+tr:nth-child(even) {
+  background: #f2f2f2;
+}
+tr:nth-child(odd) {
+  background: #ffffff;
+}
 
-      <tbody id="tabBody">
-	    </tbody>
-    </table>
-	</body>
-</div>	
-</html>
+thead,
+th,
+tr {
+  background-color: #b7d0ff;
+  font-weight: bold;
+  padding: 12px 0px 12px 6px;
+  border-bottom: 2px solid gray;
+}
+
+table {
+  font-size: 16px;
+  text-align: left;
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.center {
+  width: 60%;
+  margin: auto;
+  padding: 60px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.over {
+  background-color: #abffbd;
+}
+
+.bad {
+  background-color: #ff9e9e;
+}
