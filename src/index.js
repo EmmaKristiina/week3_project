@@ -55,7 +55,7 @@ function initialize() {
       td2.innerHTML = population[i];
       td3.innerHTML = employment[i];
 
-      per = employment[i] / population[i];
+      per = (employment[i] / population[i])*100;
       rounded = per.toFixed(2);
       const text = document.createTextNode(rounded);
       td4.appendChild(text);
@@ -63,10 +63,10 @@ function initialize() {
       tr.appendChild(td1);
       tr.appendChild(td2);
       tr.appendChild(td3);
-      if (per > 0.45) {
+      if (per > 45) {
         tr.appendChild(td4).className = "over";
       }
-      if (per < 0.25) {
+      if (per < 25) {
         tr.appendChild(td4).className = "bad";
       }
       tr.appendChild(td4);
