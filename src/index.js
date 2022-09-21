@@ -65,17 +65,10 @@ function initialize() {
       tr.appendChild(td3);
       tr.appendChild(td4);
       if (per > 45) {
-  
-        tr.appendChild(td1).className = "over";
-        tr.appendChild(td2).className = "over";
-        tr.appendChild(td3).className = "over";
-        tr.appendChild(td4).className = "over";
+        tr.className = "over";
       }
       if (per < 25) {
-        tr.appendChild(td1).className = "bad";
-        tr.appendChild(td2).className = "bad";
-        tr.appendChild(td3).className = "bad";
-        tr.appendChild(td4).className = "bad";
+        tr.className = "bad";
       }
 
       tab.appendChild(tr);
