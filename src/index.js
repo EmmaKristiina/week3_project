@@ -55,7 +55,7 @@ function initialize() {
       td2.innerHTML = population[i];
       td3.innerHTML = employment[i];
 
-      per = (employment[i] / population[i])*100;
+      per = (employment[i] / population[i]) * 100;
       rounded = per.toFixed(2);
       const text = document.createTextNode(rounded);
       td4.appendChild(text);
@@ -63,13 +63,21 @@ function initialize() {
       tr.appendChild(td1);
       tr.appendChild(td2);
       tr.appendChild(td3);
+      tr.appendChild(td4);
       if (per > 45) {
+  
+        tr.appendChild(td1).className = "over";
+        tr.appendChild(td2).className = "over";
+        tr.appendChild(td3).className = "over";
         tr.appendChild(td4).className = "over";
       }
       if (per < 25) {
+        tr.appendChild(td1).className = "bad";
+        tr.appendChild(td2).className = "bad";
+        tr.appendChild(td3).className = "bad";
         tr.appendChild(td4).className = "bad";
       }
-      tr.appendChild(td4);
+
       tab.appendChild(tr);
     });
   }
