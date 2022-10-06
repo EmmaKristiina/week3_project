@@ -1,15 +1,8 @@
-/* Lähteinä käytetty
-https://www.w3schools.com/jsref/prop_html_classname.asp*/
-import "./styles.css";
+/* Lähteinä käytetty kurssimateriaalien lisäksi: 
+https://stackoverflow.com/questions/59193983/leaflet-show-popup-on-hover-with-the-location-of-the-mouse
+*/
 
-document.getElementById("app").innerHTML = `
-<h1>Hello Vanilla!</h1>
-<div>
-  We use the same configuration as Parcel to bundle this sandbox, you can find more
-  info about Parcel 
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
-</div>
-`;
+import "./styles.css";
 
 if (document.readyState !== "loading") {
   console.log("valmis");
@@ -22,58 +15,46 @@ if (document.readyState !== "loading") {
 }
 
 function initialize() {
-  const tab = document.getElementById("tabBody");
-
-  async function getdata() {
+  const getData = async () => {
     const url =
-      "https://statfin.stat.fi/PxWeb/sq/4e244893-7761-4c4f-8e55-7a8d41d86eff";
+      "https://geo.stat.fi/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=tilastointialueet:kunta4500k&outputFormat=json&srsName=EPSG:4326";
     const dataPromise = await fetch(url);
-    const dataJSON = await dataPromise.json();
-    const url2 =
-      "https://statfin.stat.fi/PxWeb/sq/5e288b40-f8c8-4f1e-b3b0-61b86ce5c065";
-    const datapromise2 = await fetch(url2);
-    const dataJSON2 = await datapromise2.json();
+    const data = await dataPromise.json();
 
-    const temp = dataJSON.dataset.dimension.Alue.category.label;
-    const temp1 = dataJSON.dataset.value;
-    const temp2 = dataJSON2.dataset.value;
+    InputToMap(data);
+  };
 
-    const areas = Object.values(temp);
-    const population = Object.values(temp1);
-    const employment = Object.values(temp2);
-
-    var i = 0;
-    areas.forEach((area) => {
-      const tr = document.createElement("tr");
-      const td1 = document.createElement("td");
-      const td2 = document.createElement("td");
-      const td3 = document.createElement("td");
-      const td4 = document.createElement("td");
-      var per, rounded;
-
-      td1.innerText = area;
-      td2.innerHTML = population[i];
-      td3.innerHTML = employment[i];
-
-      per = (employment[i] / population[i]) * 100;
-      rounded = per.toFixed(2);
-      const text = document.createTextNode(rounded);
-      td4.appendChild(text);
-      i++;
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
-      tr.appendChild(td4);
-      if (per > 45) {
-        tr.className = "over";
-      }
-      if (per < 25) {
-        tr.className = "bad";
-      }
-
-      tab.appendChild(tr);
+  const InputToMap = (data) => {
+    let map = L.map("map", {
+      minZoom: -3,
     });
-  }
 
-  getdata();
+    let geoJson = L.geoJSON(data, {
+      onEachFeature: getName,
+    }).addTo(map);
+
+    let osm = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        maxZoom: 15,
+        attribution: "© OpenStreetMap",
+      }
+    ).addTo(map);
+
+    map.fitBounds(geoJson.getBounds());
+  };
+
+  const getName = (feature, layer) => {
+    const name = feature.properties.nimi;
+
+    layer.bindPopup(name);
+    layer.on("mouseover", function (e) {
+      this.openPopup();
+    });
+    layer.on("mouseout", function (e) {
+      this.closePopup();
+    });
+  };
+
+  getData();
 }
